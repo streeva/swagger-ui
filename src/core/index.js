@@ -51,6 +51,7 @@ export default function SwaggerUI(opts) {
     showExtensions: false,
     showCommonExtensions: false,
     withCredentials: undefined,
+    audience: "",
     supportedSubmitMethods: [
       "get",
       "put",

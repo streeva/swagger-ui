@@ -107,12 +107,13 @@ function setClientIdAndSecret(target, clientId, clientSecret) {
 }
 
 export const authorizeApplication = ( auth ) => ( { authActions } ) => {
-  let { schema, scopes, name, clientId, clientSecret } = auth
+  let { schema, scopes, name, clientId, clientSecret, audience } = auth
   let headers = {
     Authorization: "Basic " + btoa(clientId + ":" + clientSecret)
   }
   let form = {
     grant_type: "client_credentials",
+    audience: audience,
     scope: scopes.join(scopeSeparator)
   }
 

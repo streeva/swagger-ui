@@ -11,6 +11,10 @@ const oauthBlockSchema = {
     name: "clientSecret",
     onFound: () => console.warn("Swagger UI warning: don't use `OAUTH_CLIENT_SECRET` in production!")
   },
+  OAUTH_AUDIENCE: {
+    type: "string",
+    name: "audience"
+  },
   OAUTH_REALM: {
     type: "string",
     name: "realm"

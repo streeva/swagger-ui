@@ -24,6 +24,7 @@ export default class Oauth2 extends React.Component {
     let username = auth && auth.get("username") || ""
     let clientId = auth && auth.get("clientId") || authConfigs.clientId || ""
     let clientSecret = auth && auth.get("clientSecret") || authConfigs.clientSecret || ""
+    let audience = auth && auth.get("audience") || authConfigs.audience || ""
     let passwordType = auth && auth.get("passwordType") || "basic"
 
     this.state = {
@@ -33,6 +34,7 @@ export default class Oauth2 extends React.Component {
       scopes: [],
       clientId: clientId,
       clientSecret: clientSecret,
+      audience: audience,
       username: username,
       password: "",
       passwordType: passwordType
@@ -192,6 +194,23 @@ export default class Oauth2 extends React.Component {
                                       initialValue={ this.state.clientSecret }
                                       type="password"
                                       data-name="clientSecret"
+                                      onChange={ this.onInputChange }/>
+                             </Col>
+            }
+
+          </Row>
+        )}
+
+        {
+          ( (flow === APPLICATION || flow === ACCESS_CODE || flow === PASSWORD) && <Row>
+            <label htmlFor="audience">audience:</label>
+            {
+              isAuthorized ? <code> ****** </code>
+                           : <Col tablet={10} desktop={10}>
+                               <InitializedInput id="audience"
+                                      initialValue={ this.state.audience }
+                                      type="text"
+                                      data-name="audience"
                                       onChange={ this.onInputChange }/>
                              </Col>
             }
