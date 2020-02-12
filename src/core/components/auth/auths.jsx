@@ -8,7 +8,8 @@ export default class Auths extends React.Component {
     getComponent: PropTypes.func.isRequired,
     authSelectors: PropTypes.object.isRequired,
     authActions: PropTypes.object.isRequired,
-    specSelectors: PropTypes.object.isRequired
+    specSelectors: PropTypes.object.isRequired,
+    oas3Selectors: PropTypes.object.isRequired,
   }
 
   constructor(props, context) {
@@ -54,7 +55,7 @@ export default class Auths extends React.Component {
   }
 
   render() {
-    let { definitions, getComponent, authSelectors, errSelectors } = this.props
+    let { definitions, getComponent, authSelectors, errSelectors, oas3Selectors } = this.props
     const AuthItem = getComponent("AuthItem")
     const Oauth2 = getComponent("oauth2", true)
     const Button = getComponent("Button")
@@ -107,7 +108,8 @@ export default class Auths extends React.Component {
                   return (<div key={ name }>
                     <Oauth2 authorized={ authorized }
                             schema={ schema }
-                            name={ name } />
+                            name={ name }
+                            oas3Selectors={ oas3Selectors } />
                   </div>)
                 }
                 ).toArray()

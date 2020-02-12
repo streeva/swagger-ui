@@ -13,18 +13,19 @@ export default class Oauth2 extends React.Component {
     errSelectors: PropTypes.object.isRequired,
     specSelectors: PropTypes.object.isRequired,
     errActions: PropTypes.object.isRequired,
-    getConfigs: PropTypes.any
+    getConfigs: PropTypes.any,
+    oas3Selectors: PropTypes.object.isRequired,
   }
 
   constructor(props, context) {
     super(props, context)
-    let { name, schema, authorized, authSelectors } = this.props
+    let { name, schema, authorized, authSelectors, oas3Selectors } = this.props
     let auth = authorized && authorized.get(name)
     let authConfigs = authSelectors.getConfigs() || {}
     let username = auth && auth.get("username") || ""
     let clientId = auth && auth.get("clientId") || authConfigs.clientId || ""
     let clientSecret = auth && auth.get("clientSecret") || authConfigs.clientSecret || ""
-    let audience = auth && auth.get("audience") || authConfigs.audience || ""
+    let audience = auth && auth.get("audience") || oas3Selectors.selectedServer() || authConfigs.audience || ""
     let passwordType = auth && auth.get("passwordType") || "basic"
 
     this.state = {
