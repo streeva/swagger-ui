@@ -204,16 +204,14 @@ export default class Oauth2 extends React.Component {
 
         {
           ( (flow === APPLICATION || flow === ACCESS_CODE || flow === PASSWORD) && <Row>
-            <label htmlFor="audience">audience:</label>
             {
-              isAuthorized ? <code> ****** </code>
-                           : <Col tablet={10} desktop={10}>
-                               <InitializedInput id="audience"
-                                      initialValue={ this.state.audience }
-                                      type="text"
-                                      data-name="audience"
-                                      onChange={ this.onInputChange }/>
-                             </Col>
+              <Col >
+                <InitializedInput id="audience"
+                      initialValue={ this.state.audience }
+                      type="hidden"
+                      data-name="audience"
+                      onChange={ this.onInputChange }/>
+              </Col>
             }
 
           </Row>
