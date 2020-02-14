@@ -13,7 +13,7 @@ export default class ServersContainer extends React.Component {
   render () {
     const {specSelectors, oas3Selectors, oas3Actions, getComponent} = this.props
 
-    const servers = specSelectors.servers()
+    const servers = specSelectors.servers().filter(server => server.get("url").includes("sandbox"))
 
     const Servers = getComponent("Servers")
 
